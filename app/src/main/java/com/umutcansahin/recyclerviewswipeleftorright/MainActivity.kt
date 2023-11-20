@@ -18,14 +18,17 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        userAdapter = UserAdapter(list)
+        userAdapter = UserAdapter()
+        userAdapter.updateList(list)
         binding.recyclerview.adapter = userAdapter
 
         val swipeGesture = object : SwipeGesture(this) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 when (direction) {
                     ItemTouchHelper.LEFT -> {
-                        Toast.makeText(this@MainActivity, "DELETED", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@MainActivity, "DELETED${viewHolder.layoutPosition}", Toast.LENGTH_SHORT).show()
+                        list.removeAt(viewHolder.layoutPosition)
+                        userAdapter.updateList(list)
                     }
 
                     ItemTouchHelper.RIGHT -> {

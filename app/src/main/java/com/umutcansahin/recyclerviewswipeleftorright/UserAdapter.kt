@@ -5,10 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.umutcansahin.recyclerviewswipeleftorright.databinding.UserAdapterItemBinding
 
-class UserAdapter(
-    private val list: List<UserModel>
-) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter() : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
+    private val list = mutableListOf<UserModel>()
+    fun updateList(newList:List<UserModel>) {
+        list.clear()
+        list.addAll(newList)
+        notifyDataSetChanged()
+    }
 
     inner class UserViewHolder(private val binding: UserAdapterItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

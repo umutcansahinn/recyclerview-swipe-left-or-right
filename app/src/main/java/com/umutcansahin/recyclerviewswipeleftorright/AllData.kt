@@ -1,8 +1,8 @@
 package com.umutcansahin.recyclerviewswipeleftorright
 
 object AllData {
-    private val list = ArrayList<UserModel>()
-    fun getAllData(): List<UserModel> {
+    private val list = mutableListOf<UserModel>()
+    fun getAllData(): MutableList<UserModel> {
         list.apply {
             add(UserModel("ali", 1))
             add(UserModel("kadir", 2))
